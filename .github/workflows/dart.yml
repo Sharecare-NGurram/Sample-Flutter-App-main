@@ -37,6 +37,16 @@ jobs:
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
         run: dart analyze
+      - name: Sauce Labs App Automate Action
+        uses: oauth-naveen.gurram-f50a5/sauce-labs-app-automate-action@V1.0.1
+        with:
+            apk_path: 'C:/Users/NGurram/Desktop/Sample-Flutter-App-main/build/app/outputs/apk/debug/app-debug.apk'
+            test_apk_path: 'C:/Users/NGurram/Desktop/Sample-Flutter-App-main/build/app/outputs/apk/release/app-release.apk'
+            data_center: 'eu-central-1'
+            device_name: 'Samsung_Galaxy_S9_free'
+        env:
+          SAUCELABS_ACCESS_KEY: ${{ secrets.SAUCELABS_ACCESS_KEY }}
+          SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
