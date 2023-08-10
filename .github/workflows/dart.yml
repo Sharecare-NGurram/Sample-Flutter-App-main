@@ -43,7 +43,7 @@ jobs:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
       - name: Sauce Labs App Automate Action
-        uses: moatazeldebsy/sauce-labs-app-automate-action@V1.0.1
+        uses: Sharecare-NGurram/sauce-labs-app-automate-action@V1.0.1
         with:
             #apk_path: 'build/app/outputs/apk/release/app-debug.apk'
             test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
