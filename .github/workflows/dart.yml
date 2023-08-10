@@ -43,7 +43,7 @@ jobs:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
       - name: Sauce Labs App Automate Action
-        uses: Sharecare-NGurram/Sample-Flutter-App-main@V1
+        uses: Sharecare-NGurram/Sample-Flutter-App-main@V1.0.1
         with:
             #apk_path: 'build/app/outputs/apk/release/app-debug.apk'
             test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
