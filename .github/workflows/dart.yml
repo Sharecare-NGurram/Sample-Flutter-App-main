@@ -45,6 +45,10 @@ jobs:
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
           data_center: 'eu-central-1'
           device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
+      - uses: actions/checkout@v3  
+      - uses: saucelabs/sauce-connect-action@v2
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+          tunnelName: github-action-tunnel
+          configFile: ${{ github.workspace }}/sc-configuration/config.yaml
