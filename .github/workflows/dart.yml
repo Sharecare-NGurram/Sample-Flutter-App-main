@@ -42,9 +42,9 @@ jobs:
         with:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
-      - name: Sauce Labs App Automate Action
-      - uses: Sharecare-NGurram/Sample-Flutter-App-main@V1.0.1
-        with:
+     # - name: Sauce Labs App Automate Action
+     # - uses: Sharecare-NGurram/Sample-Flutter-App-main@V1.0.1
+     #   with:
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
           data_center: 'eu-central-1'
           device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
