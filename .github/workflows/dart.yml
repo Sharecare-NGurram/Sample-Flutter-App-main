@@ -43,7 +43,7 @@ jobs:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
       - name: Sauce Labs App Automate Action
-        uses: moatazeldebsy/sauce-labs-app-automate-action@V1.0.1
+       # uses: moatazeldebsy/sauce-labs-app-automate-action@V1.0.1
         with:
             #apk_path: 'build/app/outputs/apk/release/app-debug.apk'
             test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
@@ -52,8 +52,8 @@ jobs:
         env:
           SAUCELABS_ACCESS_KEY: ${{ secrets.SAUCELABS_ACCESS_KEY }}
           SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
-            -f espresso -a $1 \
-            -a $2 -d "deviceName=$3" --data-center $4
+        #    -f espresso -a $1 \
+        #    -a $2 -d "deviceName=$3" --data-center $4
 
       # Your project will need to have tests in test/ and a dependency on
       # package:test for this step to succeed. Note that Flutter projects will
