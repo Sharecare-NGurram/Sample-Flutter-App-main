@@ -51,8 +51,8 @@ jobs:
             data_center: 'eu-central-1'
             device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
         env:
-          SAUCELABS_ACCESS_KEY: ${{ secrets.SAUCELABS_ACCESS_KEY }}
-          SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
         #    -f espresso -a $1 \
         #    -a $2 -d "deviceName=$3" --data-center $4
 
