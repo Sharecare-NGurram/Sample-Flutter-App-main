@@ -43,6 +43,7 @@ jobs:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
       - name: Sauce Labs App Automate Action
+        uses: ALJAZEERAPLUS/sauce-labs-storage-action@v1
      # - name: Saucectl Run Action
       #  uses: saucelabs/saucectl-run-action@v3
         with:
@@ -54,12 +55,6 @@ jobs:
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-          skip-run: false
-          working-directory: action.yml
-          region: EU-Central-1
-          concurrency: 1
-          tunnel-name: "flutter"
-          tunnel-owner: "naveen"
           
         #    -f espresso -a $1 \
         #    -a $2 -d "deviceName=$3" --data-center $4
