@@ -42,12 +42,17 @@ jobs:
         with:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
-      - name: Sauce Labs App Automate Action
-        uses: moatazeldebsy/sauce-labs-app-automate-action@V1.0.1
+      - uses: actions/checkout@v3  # reference files in the current repository
+      - uses: saucelabs/sauce-connect-action@v2.3.2
         with:
-          test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
-          data_center: 'eu-central-1'
-          device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
-        env:
-          SAUCELABS_ACCESS_KEY: ${{ secrets.SAUCELABS_ACCESS_KEY }}
-          SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
+          username: ${{ secrets.SAUCE_USERNAME }}
+          accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
+          tunnelName: github-action-tunnel
+          configFile: ${{ github.workspace }}/sc-configuration/config.yaml
+            # ...
+
+      - uses: actions/upload-artifact@v3
+        if: ${{ failure() }}
+        with:
+          name: sauce-connect-log
+          path: ${{ env.SAUCE_CONNECT_DIR_IN_HOST }}/sauce-connect.log
