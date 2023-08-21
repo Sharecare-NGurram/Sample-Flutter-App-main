@@ -42,8 +42,9 @@ jobs:
         with:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
+          run: sudo  npm install -g ./sauce-connect-launcher
       - uses: actions/checkout@v3  # reference files in the current repository
-      - uses: saucelabs/sauce-connect-action@v2.3.2
+      - uses: saucelabs/sauce-connect-action@v2.3.1
         with:
           username: ${{ secrets.SAUCE_USERNAME }}
           accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
