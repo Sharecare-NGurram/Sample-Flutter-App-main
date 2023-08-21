@@ -45,13 +45,16 @@ jobs:
       - uses: actions/checkout@v3
       #- name: Install flutter connect
       #  run: sudo  npm install -g ./sauce-connect-launcher
-      - uses: saucelabs/sauce-connect-action@v2.3.1
+      - uses: ./
         with:
-                SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
-                SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-                tunnelName: github-action-tunnel
-                tunnelPool: true
-                configFile: ${{ github.workspace }}/sc-configuration/config.yaml
+            test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
+            data_center: 'eu-central-1'
+            device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
+            #SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+            #SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+            tunnelName: github-action-tunnel
+            tunnelPool: true
+            configFile: ${{ github.workspace }}/sc-configuration/config.yaml
 
       - name: "Run Test"
         run: npm run test
