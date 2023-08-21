@@ -45,17 +45,16 @@ jobs:
       - uses: actions/checkout@v3
       #- name: Install flutter connect
       #  run: sudo  npm install -g ./sauce-connect-launcher
-      - uses: saucelabs/sauce-connect-action@v2.3.1
+      - uses: ./
         with:
-          username: ${{ secrets.SAUCE_USERNAME }}
-          accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
-          tunnelName: oauth-naveen.gurram-f50a5_tunnel_name
-          configFile: ${{ github.workspace }}/sc -c %HOMEPATH%\sc\config.yml
-         # ./sc -u oauth-naveen.gurram-f50a5 -k c5810172-2661-4e8f-954c-d639ff8f0f29 --region eu-central --tunnel-name oauth-naveen.gurram-f50a5_tunnel_name
-            # ...
+                username: ${{ secrets.SAUCE_USERNAME }}
+                accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
+                tunnelName: github-action-tunnel
+                tunnelPool: true
+                configFile: ${{ github.workspace }}/sc-configuration/config.yaml
 
-    #  - uses: actions/upload-artifact@v3
-    #    if: ${{ failure() }}
-    #    with:
-    #      name: sauce-connect-log
-    #      path: ${{ env.SAUCE_CONNECT_DIR_IN_HOST }}/sauce-connect.log
+      - name: "Run Test"
+        run: npm run test
+        env:
+                SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+                SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
