@@ -47,4 +47,3 @@ jobs:
         
       - name: Saucectl RUN
         run: saucectl configure
-      - uses: saucelabs/saucectl-run-action@v3
