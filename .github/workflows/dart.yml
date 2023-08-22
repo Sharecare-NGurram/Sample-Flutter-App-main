@@ -42,9 +42,10 @@ jobs:
         with:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
+          test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name:  Saucectl RUN
+      - name: Saucectl RUN
         run: gh repo clone saucelabs/saucectl
-    #  - run: saucectl configure
+      - run: saucectl RUN
