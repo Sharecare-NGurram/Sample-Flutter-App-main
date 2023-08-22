@@ -47,12 +47,10 @@ jobs:
         uses: actions/checkout@v3        
       - name: Saucectl RUN
         run: npm install Saucectl@v0.155.1
-      - name: upload to sauce
-        with:
+        env:
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
           data_center: 'eu-central-1'
           device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
-        env:
           SAUCELABS_ACCESS_KEY: ${{ secrets.SAUCELABS_ACCESS_KEY }}
           SAUCELABS_USERNAME: ${{ secrets.SAUCELABS_USERNAME }}
       
