@@ -45,5 +45,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - name:  yarn install Saucectl
-        run: saucectl configure
+      - name:  Saucectl Run
+        run: yarn install Saucectl
+      - run: saucectl configure
