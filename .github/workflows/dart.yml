@@ -47,4 +47,4 @@ jobs:
         
       - name:  Saucectl RUN
         run: gh repo clone saucelabs/saucectl
-      - run: saucectl configure
+    #  - run: saucectl configure
