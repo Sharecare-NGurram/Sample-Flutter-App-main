@@ -46,7 +46,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3        
       - name: Saucectl RUN
-      - uses: npm install Saucectl@v0.155.1
+        uses: npm install Saucectl@v0.155.1
         with:
           data_center: 'eu-central-1'
           device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
