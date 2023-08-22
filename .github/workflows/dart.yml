@@ -10,6 +10,10 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
+env:
+                GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+                SAUCE__USER USERNAME: ${{ secrets.SAUCE__USERNAME }}
+                SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
 
 jobs:
   build:
