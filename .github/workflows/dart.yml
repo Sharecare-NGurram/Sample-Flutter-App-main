@@ -10,10 +10,12 @@ on:
     branches: [ "master" ]
   pull_request_target:
     branches: [ "master" ]
+    paths: 
+      -"v1"
 env:
                 GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-                username: ${{ secrets.SAUCE_USERNAME }}
-                ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+                SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
+                SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
 
 jobs:
   build:
@@ -26,18 +28,12 @@ jobs:
       # You can specify other versions if desired, see documentation here:
       # https://github.com/dart-lang/setup-dart/blob/main/README.md
       - uses: dart-lang/setup-dart@v1
-      #- uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
       - name: Set up Flutter 
         uses: subosito/flutter-action@v2
         with: 
             flutter-version: '3.10.6'
       - name: Install dependencies
         run: flutter pub get
-
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
-
       # Consider passing '--fatal-infos' for slightly stricter analysis.
       - name: Analyze project source
         run: dart analyze
@@ -49,10 +45,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         
-      - run: saucectl configure
       - name: Saucectl RUN
-        uses: saucelabs/saucectl-run-action@v3
-   #   - name: saucectl run
-    #    uses: saucelabs/saucectl-run-action@v3
-    #    with:
-    #      working-directory: ./v1/examples/webkit
+        run: saucectl configure
+      - uses: saucelabs/saucectl-run-action@v3
