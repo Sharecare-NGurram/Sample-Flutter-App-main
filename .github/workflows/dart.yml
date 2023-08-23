@@ -48,8 +48,8 @@ jobs:
       - name: Saucectl RUN
         run: npm install -g saucectl
      #   run: yarn add Saucectl@v0.156.0
-      - name: credentials create
-        run: saucectl configure
+     # - name: credentials create
+     #   run: saucectl configure
       - name: framework
         run: saucectl init
         env:
