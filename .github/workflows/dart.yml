@@ -46,7 +46,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3        
       - name: Saucectl RUN
-        run: npm install Saucectl@v0.155.1
+        run: npm install -g saucectl
+     #   run: yarn add Saucectl@v0.156.0
         env:
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
           data_center: 'eu-central-1'
