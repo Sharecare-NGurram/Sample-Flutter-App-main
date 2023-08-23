@@ -52,7 +52,7 @@ jobs:
      #   run: saucectl configure
       - name: framework
         run: saucectl init
-        env:
+      - with:
             select region: eu-central-1
             select framework: espresso
             select Application to test: app-release.apk
