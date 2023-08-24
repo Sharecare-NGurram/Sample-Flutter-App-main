@@ -50,16 +50,11 @@ jobs:
      #   run: yarn add Saucectl@v0.156.0
      # - name: credentials create
      #   run: saucectl configure
-     # - name: framework
-     #   run: saucectl init
-       # env:
-       #     select region: eu-central-1
-       #     select framework: espresso
-      #      select Application to test: app-release.apk
-      #      select device pattern: Google Pixel .*
-      #      select emulator: Android GoogleAPI Emulator
-      #      select platform version: 13.0
-      - run: saucectl run -c ./C:\Users\NGurram\Desktop\saucectl-0.155.1\tests\e2e\playwright-cucumberjs\.sauce/to/{config-file}.yml
+      - name: framework
+        run: saucectl init        
+        env:
+           {region: eu-central-1, framework: espresso, Application to test: app-release.apk, device pattern: Google Pixel .*, emulator: Android GoogleAPI Emulator, platform version: 13.0}
+      - run: saucectl run
         #    test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
         #  data_center: 'eu-central-1'
         #  device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
