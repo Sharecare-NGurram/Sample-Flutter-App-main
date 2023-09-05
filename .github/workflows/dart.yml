@@ -55,7 +55,7 @@ jobs:
      #  run: saucectl init      
      #   env:
       #     {region: eu-central-1, framework: espresso, Application to test: app-release.apk, device pattern: Google Pixel .*, emulator: Android GoogleAPI Emulator, platform version: 13.0}
-      - run: saucectl run
+      - run: saucectl run .sauce/config.yml --region us-west-1
         #    test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
         #  data_center: 'eu-central-1'
         #  device_name: 'Google Pixel GoogleAPI Emulator,platformVersion=7.0'
