@@ -51,7 +51,7 @@ jobs:
     #    run: saucectl init        
         env:
            {region: eu-central-1, framework: espresso, Application to test: app-release.apk, device pattern: Google Pixel .*, emulator: Android GoogleAPI Emulator, platform version: 13.0}
-      - run: saucectl run /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/.sauce/config.yml
+      - run: saucectl run
 
         #    test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
         #  data_center: 'eu-central-1'
