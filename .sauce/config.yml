@@ -1,0 +1,24 @@
+apiVersion: v1alpha
+kind: espresso
+defaults: {}
+showConsoleLog: false
+sauce:
+  region: eu-central-1
+  concurrency: 10
+espresso:
+  app: app-release.apk
+  testApp: app-release.apk
+suites:
+- name: espresso - Google Pixel .* - Android GoogleAPI Emulator
+  devices:
+  - name: Google Pixel .*
+  emulators:
+  - name: Android GoogleAPI Emulator
+    platformVersions:
+    - "13.0"
+artifacts:
+  download:
+    match:
+    - '*'
+    when: always
+    directory: artifacts
