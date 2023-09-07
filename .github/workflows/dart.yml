@@ -44,13 +44,11 @@ jobs:
           path: build/app/outputs/apk/release/app-release.apk
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
 
-      - name: Checkout
-        uses: actions/checkout@v3        
-      - name: Saucectl RUN
-        run: npm install -g saucectl@latest
-   #   - name: framework
-    #    run: saucectl init        
-        env:
-           {region: eu-central-1, framework: espresso, Application to test: app-release.apk, device pattern: Google Pixel .*, emulator: Android GoogleAPI Emulator, platform version: 13.0}
-      - run: chmod +r build/app/outputs/apk/release/app-release.apk saucectl run
+      - name: Upload to the Amazon AppStore
+        uses: ALJAZEERAPLUS/sauce-labs-storage-action@v2
+        with:
+          endpoint-action: upload
+          file-path: app/build/outputs/apk/release/app-release.apk
+          sauce-labs-username: ${{ secrets.SAUCELABS_USERNAME }}
+          sauce-labs-access-key: ${{ secrets.SAUCELABS_ACCESS_KEY }}
 
