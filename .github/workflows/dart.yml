@@ -46,12 +46,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3        
       - name: Saucectl RUN
-        run: npm install -g saucectl
-     #   run: yarn add Saucectl@v0.156.0
-     # - name: credentials create
-     #   run: saucectl configure
-      - name: framework
-        run: saucectl init        
+        run: npm install -g saucectl@latest
+   #   - name: framework
+    #    run: saucectl init        
         env:
            {region: eu-central-1, framework: espresso, Application to test: app-release.apk, device pattern: Google Pixel .*, emulator: Android GoogleAPI Emulator, platform version: 13.0}
       - run: saucectl run
