@@ -44,11 +44,6 @@ jobs:
           path: build/app/outputs/apk/release/app-release.apk
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
 
-      - name: Upload to the Amazon AppStore
-        uses: ALJAZEERAPLUS/sauce-labs-storage-action@v2
-        with:
-          endpoint-action: upload
-          file-path: app/build/outputs/apk/release/app-release.apk
-          sauce-labs-username: ${{ secrets.SAUCELABS_USERNAME }}
-          sauce-labs-access-key: ${{ secrets.SAUCELABS_ACCESS_KEY }}
+      - uses: saucelabs/saucectl-run-action@v3
+      
 
