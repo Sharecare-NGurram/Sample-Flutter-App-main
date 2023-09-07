@@ -10,8 +10,8 @@ espresso:
   testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/apk/release/app-release.apk
 suites:
 - name: espresso - Google Pixel .* - Android GoogleAPI Emulator
-  devices:
-  - name: Google Pixel .*
+#  devices:
+#  - name: Google Pixel .*
   emulators:
   - name: Android GoogleAPI Emulator
     platformVersions:
