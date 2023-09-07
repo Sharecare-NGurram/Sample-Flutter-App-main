@@ -40,9 +40,9 @@ jobs:
       - run: flutter build apk
       - uses: actions/upload-artifact@v1
         with:
-          name: test-release.apk
-          path: build/app/outputs/apk/release/test-release.apk
-          test_apk_path: 'build/app/outputs/apk/release/test-release.apk'
+          name: app-release.apk
+          path: build/app/outputs/apk/release/app-release.apk
+          test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
       - name: Checkout
         uses: actions/checkout@v3        
       - name: Saucectl RUN
