@@ -56,19 +56,7 @@ jobs:
       - name: SonarQube Scan
         run: |
           # Download and install SonarScanner (adjust the version as needed)
-          curl -o sonar-scanner-cli.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-          unzip sonar-scanner-cli.zip
-          chmod +x sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
-          sudo mv sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner /usr/local/bin/
-          
-          # Authenticate with SonarQube (use an access token or username/password)
-          export SONAR_TOKEN=SONAR_TOKEN
-          
-          # Run the SonarScanner analysis
-          sonar-scanner \
-            -Dsonar.projectKey=Sample-Flutter-App-main \
-            -Dsonar.host.url=http://localhost:9000 \
-            -Dsonar.login=$SONAR_TOKEN
+
             
       - name: Upload to saucelabs
       - uses: saucelabs/saucectl-run-action@v3
