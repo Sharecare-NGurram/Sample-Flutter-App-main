@@ -45,25 +45,29 @@ jobs:
           name: app-release.apk
           path: build/app/outputs/apk/release/app-release.apk
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'  # Specify the Java version required by SonarScanner
+
       - name: SonarQube Scan
         run: |
-          # Install SonarScanner (adjust the version as needed)
-          curl -sSL https://sonarqube.example.com/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip
-          unzip build-wrapper-linux-x86.zip
-          chmod +x build-wrapper-linux-x86/build-wrapper-linux-x86-64
-          sudo mv build-wrapper-linux-x86 /usr/local/bin/
+          # Download and install SonarScanner (adjust the version as needed)
+          curl -o sonar-scanner-cli.zip -L https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+          unzip sonar-scanner-cli.zip
+          chmod +x sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner
+          sudo mv sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner /usr/local/bin/
           
           # Authenticate with SonarQube (use an access token or username/password)
-          export SONAR_TOKEN="your-sonar-token"
+          export SONAR_TOKEN=SONAR_TOKEN
           
-          # Run the build wrapper to capture build information
-          build-wrapper-linux-x86-64 --out-dir build-wrapper-output make clean all
-          
-          # Execute the SonarScanner analysis
+          # Run the SonarScanner analysis
           sonar-scanner \
-            -Dsonar.projectKey=your-project-key \
-            -Dsonar.organization=your-organization \
-            -Dsonar.host.url=https://sonarqube.example.com \
+            -Dsonar.projectKey=Sample-Flutter-App-main \
+            -Dsonar.host.url=http://localhost:9000 \
             -Dsonar.login=$SONAR_TOKEN
             
       - name: Upload to saucelabs
