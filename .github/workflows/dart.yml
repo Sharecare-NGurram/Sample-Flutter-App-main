@@ -7,53 +7,60 @@ name: Dart
 
 on:
   push:
-    branches: [ "master" ]
+    branches:
+      - master
   pull_request_target:
-    branches: [ "master" ]
-    paths: 
-      -"v1"
+    branches:
+      - master
+    paths:
+      - "v1"
+
 env:
-                GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-                SAUCE_USERNAME: ${{secrets.SAUCE_USERNAME}}
-                SAUCE_ACCESS_KEY: ${{secrets.SAUCE_ACCESS_KEY}}
-                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-                SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+  SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+  SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      - uses: dart-lang/setup-dart@v1
-      - name: Set up Flutter 
+      - name: Set up Dart SDK
+        uses: dart-lang/setup-dart@v1
+
+      - name: Set up Flutter
         uses: subosito/flutter-action@v2
-        with: 
-            flutter-version: '3.10.6'
+        with:
+          flutter-version: '3.10.6'
+
       - name: Install dependencies
         run: flutter pub get
-      # Consider passing '--fatal-infos' for slightly stricter analysis.
+
       - name: Analyze project source
         run: dart analyze
-      - run: flutter build apk
-      - uses: actions/upload-artifact@v1
+
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: app-release.apk
+          name: app-release
           path: build/app/outputs/apk/release/app-release.apk
-          test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
-      - uses: actions/checkout@v3
-        name: SonarQube Scan
+
+      - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      - uses: koiralaprt/sonarscan@v1.1.4
-      - run: sonar-scanner -Dsonar.login=$SONAR_TOKEN
-  #    - uses: kitabisa/sonarqube-action@master
-      
-        name: Upload to saucelabs
-      - uses: saucelabs/saucectl-run-action@v3
+        run: |
+          sonar-scanner -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+
+      - name: Upload to Sauce Labs
+        uses: saucelabs/saucectl-run-action@v3
+
       
 
