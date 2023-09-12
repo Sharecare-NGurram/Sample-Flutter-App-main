@@ -53,7 +53,8 @@ jobs:
           name: app-release
           path: build/app/outputs/apk/release/app-release.apk
 
-      - name: SonarQube Scan
+      - uses: actions/checkout@v3
+        name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       - uses: koiralaprt/sonarscan@v1.1.4
