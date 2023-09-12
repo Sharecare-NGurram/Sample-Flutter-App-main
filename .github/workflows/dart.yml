@@ -51,14 +51,24 @@ jobs:
           name: app-release
           path: build/app/outputs/apk/release/app-release.apk
 
-      - uses: actions/checkout@v3
-        name: SonarQube Scan
-      - uses: sonarsource/sonarqube-scan-action@master
+    #  - uses: actions/checkout@v3
+    #    name: SonarQube Scan
+    #  - uses: sonarsource/sonarqube-scan-action@master
+      - name: Configure Proxy
+        run: |
+          echo "::set-env name=HTTP_PROXY::http://192.168.1.8:9000/"
+          echo "::set-env name=HTTPS_PROXY::https://192.168.1.8:9000/"
+      - name: Retry SonarScanner
+        uses: softprops/action-retry@v1
+        with:
+          retries: 3 # Number of retries
+          delay: 5000 # Delay in milliseconds between retries
+        if: failure() # Retry only if the previous step failed
+      - run: sonar-scanner -Dsonar.login=$SONAR_TOKEN
+
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-   #   - uses: kitabisa/sonarqube-action@master
-   #   - run: sonar-scanner -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
 
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
