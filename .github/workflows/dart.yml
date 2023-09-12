@@ -54,16 +54,11 @@ jobs:
     #  - uses: actions/checkout@v3
     #    name: SonarQube Scan
     #  - uses: sonarsource/sonarqube-scan-action@master
-      - name: Configure Proxy
+      - name: SonarQube Scan
         run: |
-      - name: Retry SonarScanner
-        uses: sonarsource/sonarqube-scan-action@master
-        with:
-          retries: 3 # Number of retries
-          delay: 5000 # Delay in milliseconds between retries
-        if: failure() # Retry only if the previous step failed
-      - run: sonar-scanner -Dsonar.login=$SONAR_TOKEN
-
+          npm run build # Adjust this line to match your build command
+          npm install -g sonarqube-scanner
+          sonar-scanner -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.8:9000/ -Dsonar.login=$SONAR_TOKEN
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
