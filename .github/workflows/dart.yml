@@ -47,6 +47,9 @@ jobs:
           test_apk_path: 'build/app/outputs/apk/release/app-release.apk'
       - uses: actions/checkout@v3
         name: SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - run: sonar-scanner -Dsonar.login=$SONAR_TOKEN
       - uses: kitabisa/sonarqube-action@master
       
         name: Upload to saucelabs
