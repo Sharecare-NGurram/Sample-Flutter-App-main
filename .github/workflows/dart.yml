@@ -56,8 +56,6 @@ jobs:
     #  - uses: sonarsource/sonarqube-scan-action@master
       - name: Configure Proxy
         run: |
-          echo "::set-env name=HTTP_PROXY::http://192.168.1.8:9000/"
-          echo "::set-env name=HTTPS_PROXY::https://192.168.1.8:9000/"
       - name: Retry SonarScanner
         uses: sonarsource/sonarqube-scan-action@master
         with:
