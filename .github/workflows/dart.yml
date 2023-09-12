@@ -49,8 +49,9 @@ jobs:
         name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - uses: koiralaprt/sonarscan@v1.1.4
       - run: sonar-scanner -Dsonar.login=$SONAR_TOKEN
-      - uses: kitabisa/sonarqube-action@master
+  #    - uses: kitabisa/sonarqube-action@master
       
         name: Upload to saucelabs
       - uses: saucelabs/saucectl-run-action@v3
