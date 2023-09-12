@@ -56,8 +56,8 @@ jobs:
       - name: SonarQube Scan
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+      - uses: koiralaprt/sonarscan@v1.1.4
+      - run: sonar-scanner -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
 
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
