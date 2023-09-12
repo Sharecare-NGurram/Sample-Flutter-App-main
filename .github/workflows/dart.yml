@@ -59,7 +59,7 @@ jobs:
           echo "::set-env name=HTTP_PROXY::http://192.168.1.8:9000/"
           echo "::set-env name=HTTPS_PROXY::https://192.168.1.8:9000/"
       - name: Retry SonarScanner
-        uses: softprops/action-retry@v1
+        uses: sonarsource/sonarqube-scan-action@master
         with:
           retries: 3 # Number of retries
           delay: 5000 # Delay in milliseconds between retries
