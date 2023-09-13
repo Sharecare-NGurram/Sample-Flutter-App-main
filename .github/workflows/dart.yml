@@ -43,6 +43,10 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - uses: florianl/govulncheck-action@v0.0.3
 
    #   - name: SonarQube Scan
    #     run: |
