@@ -44,7 +44,7 @@ jobs:
       - name: Analyze project source
         run: dart analyze
       - name: Check Network Connectivity to SonarQube API
-        run: ping 192.168.1.8 -c 5
+        run: ping -c 5 google.com
 
       - name: SonarQube Scan
         run: |
