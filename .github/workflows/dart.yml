@@ -43,11 +43,11 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
-      - uses: florianl/govulncheck-action@v0.0.3
+      - name: Checkout Latest Commit
+        uses: actions/checkout@v1
 
+      - name: Check deps
+        uses: nnichols/clojure-vulnerability-check-action@v1
    #   - name: SonarQube Scan
    #     run: |
    #       npm install -g sonarqube-scanner
