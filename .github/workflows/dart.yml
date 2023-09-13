@@ -44,13 +44,13 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
-      - name: SonarQube Scan
-        run: |
-          npm install -g sonarqube-scanner
-          sonar-scanner -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.8:9000/ -Dsonar.login=$SONAR_TOKEN
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+   #   - name: SonarQube Scan
+   #     run: |
+   #       npm install -g sonarqube-scanner
+   #       sonar-scanner -Dsonar.sources=. -Dsonar.host.url=http://192.168.1.8:9000/ -Dsonar.login=$SONAR_TOKEN
+   #     env:
+   #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+   #       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
       - name: Build APK
         run: flutter build apk
