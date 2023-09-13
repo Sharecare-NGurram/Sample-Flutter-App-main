@@ -41,6 +41,9 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
+      - name: Check Network Connectivity to SonarQube API
+        run: curl -I sonarqube-server-url/api/system/status
+
       - name: SonarQube Scan
         run: |
           npm install -g sonarqube-scanner
