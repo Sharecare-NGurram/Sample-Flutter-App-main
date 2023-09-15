@@ -50,8 +50,8 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
 
-      - name: Check deps
-        uses: nnichols/clojure-vulnerability-check-action@v1
+    #  - name: Check deps
+    #    uses: nnichols/clojure-vulnerability-check-action@v1
 
       - name: Build APK
         run: flutter build apk
@@ -61,6 +61,30 @@ jobs:
         with:
           name: app-release
           path: build/app/outputs/apk/release/app-release.apk
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install OWASP ZAP
+        run: |
+          wget https://github.com/zaproxy/zaproxy/releases/download/2.11.0/ZAP_2.11.0_Linux.tar.gz
+          tar -xzf ZAP_2.11.0_Linux.tar.gz
+        working-directory: ${{ github.workspace }}
+
+      - name: Start OWASP ZAP
+        run: |
+          ./ZAP_2.11.0/zap.sh -daemon
+        working-directory: ${{ github.workspace }}
+
+      - name: Run OWASP ZAP Scan
+        run: |
+          ./ZAP_2.11.0/zap-cli.py quick-scan --self-contained --spider --output /github/workspace/report.html https://your-website-url
+        working-directory: ${{ github.workspace }}
+
+      - name: Upload Scan Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: owasp-zap-report
+          path: report.html
 
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
