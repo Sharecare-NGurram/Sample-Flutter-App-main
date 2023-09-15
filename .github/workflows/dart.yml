@@ -42,30 +42,26 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install OWASP ZAP
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Run Dependency-Check
         run: |
-          wget https://github.com/zaproxy/zaproxy/releases/download/2.11.0/ZAP_2.11.0_Linux.tar.gz
-          tar -xzf ZAP_2.11.0_Linux.tar.gz
+          ./gradlew dependencyCheckAnalyze
         working-directory: ${{ github.workspace }}
 
-      - name: Start OWASP ZAP
-        run: |
-          ./ZAP_2.11.0/zap.sh -daemon
-        working-directory: ${{ github.workspace }}
-
-      - name: Run OWASP ZAP Scan
-        run: |
-          ./ZAP_2.11.0/zap-cli.py quick-scan --self-contained --spider --output /github/workspace/report.html https://your-website-url
-        working-directory: ${{ github.workspace }}
-
-      - name: Upload Scan Report
+      - name: Upload Scan Results
         uses: actions/upload-artifact@v2
         with:
-          name: owasp-zap-report
-          path: report.html
+          name: dependency-scan-results
+          path: ${{ github.workspace }}/build/reports/dependency-check-report.html
+
   #    - name: Checkout Latest Commit
   #      uses: actions/checkout@v1
   #    - uses: actions/checkout@v3
