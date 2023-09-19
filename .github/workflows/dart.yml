@@ -46,17 +46,26 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Set Up Node.js
-        uses: actions/setup-node@v2
+      - name: Set Up Java
+        uses: actions/setup-java@v2
         with:
-          node-version: 14  # Change to the appropriate Node.js version
-      - name: Install Snyk CLI
-        run: npm install -g snyk
+          java-version: 11  # Change to the appropriate Java version
 
-      - name: Run Snyk Dependency Scan
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
-        run: snyk test
+      - name: Download and Run OWASP Dependency-Check
+        run: |
+          # Download and extract Dependency-Check
+          curl -fsSL -o dependency-check.zip https://dl.bintray.com/jeremy-long/owasp/dependency-check-6.3.1-release.zip
+          unzip -q dependency-check.zip -d dependency-check
+          cd dependency-check
+
+          # Run Dependency-Check scan on your project
+          ./bin/dependency-check.sh --scan /path/to/your/project
+
+      - name: Upload OWASP Dependency-Check Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: dependency-check-report
+          path: dependency-check/report
 
   #    - name: Checkout Latest Commit
   #      uses: actions/checkout@v1
