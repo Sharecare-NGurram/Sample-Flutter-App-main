@@ -42,23 +42,21 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
-      
-      - name: Set Up Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11  # Change to the appropriate Java version
-          distribution: 'adopt'  # Specify the distribution name
-      - name: Download OWASP Dependency-Check
-        run: |
-          # Download and extract Dependency-Check
-          curl -fsSL https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip 
-          unzip -q dependency-check-8.4.0-release.zip
-     #     chmod +x dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh
 
-      - name: Run OWASP Dependency-Check
-        run: |
-          dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh --project "Sample-Flutter-App-main" --scan ./home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main --format ALL --out ./reports
-        working-directory: ${{ github.workspace }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+        node-version: 14
+
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
+      - name: Authenticate Snyk
+        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+
+      - name: Run Snyk Dependency Scan
+        run: snyk test --all-projects --all-projects
+      
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
       - uses: actions/checkout@v3
@@ -82,24 +80,28 @@ jobs:
    #   - name: Checkout Code
    #     uses: actions/checkout@v2
 
-      - name: Set Up Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: 11  # Change to the appropriate Java version
-          distribution: 'adopt'  # Specify the distribution name
-      - name: Download and Run OWASP Dependency-Check
-        run: |
+   #   - name: Set Up Java
+   #     uses: actions/setup-java@v2
+   #     with:
+   #       java-version: 11  # Change to the appropriate Java version
+   #       distribution: 'adopt'  # Specify the distribution name
+   #   - name: Download OWASP Dependency-Check
+   #     run: |
           # Download and extract Dependency-Check
-          curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
-          unzip -q dependency-check.zip -d dependency-check
-          cd dependency-check
-           ./bin/dependency-check.sh --scan /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main
+   #       curl -fsSL https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip 
+   #       unzip -q dependency-check-8.4.0-release.zip
+     #     chmod +x dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh
 
-      - name: Upload OWASP Dependency-Check Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: dependency-check-report
-          path: build/app/outputs/
+   #   - name: Run OWASP Dependency-Check
+   #     run: |
+   #       dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh --project "Sample-Flutter-App-main" --scan ./home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main --format ALL --out ./reports
+   #     working-directory: ${{ github.workspace }}
+
+   #   - name: Upload OWASP Dependency-Check Report
+   #     uses: actions/upload-artifact@v3
+   #     with:
+   #       name: dependency-check-report
+   #       path: build/app/outputs/
    #   - name: Install Snyk CLI
    #     run: npm install -g snyk
 
