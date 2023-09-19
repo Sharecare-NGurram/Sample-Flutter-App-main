@@ -42,7 +42,27 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
-      
+
+      - name: Checkout Latest Commit
+        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+
+      - name: Check deps
+        uses: nnichols/clojure-vulnerability-check-action@v1
+
+      - name: Build APK
+        run: flutter build apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-release
+          path: build/app/outputs/apk/release/app-release.apk
+          
       - name: Checkout Code
         uses: actions/checkout@v2
 
@@ -59,30 +79,10 @@ jobs:
           cd dependency-check
 
       - name: Upload OWASP Dependency-Check Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report
           path: dependency-check/report
-
-  #    - name: Checkout Latest Commit
-  #      uses: actions/checkout@v1
-  #    - uses: actions/checkout@v3
-  #      with:
-  #        fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-    #  - name: SonarCloud Scan
-    #    uses: SonarSource/sonarcloud-github-action@master
-
-    #  - name: Check deps
-    #    uses: nnichols/clojure-vulnerability-check-action@v1
-
-      - name: Build APK
-        run: flutter build apk
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: app-release
-          path: build/app/outputs/apk/release/app-release.apk
    #   - name: Install Snyk CLI
    #     run: npm install -g snyk
 
