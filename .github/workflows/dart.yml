@@ -58,9 +58,6 @@ jobs:
           unzip -q dependency-check.zip -d dependency-check
           cd dependency-check
 
-          # Run Dependency-Check scan on your project
-          ./bin/dependency-check.sh --scan /path/to/your/project
-
       - name: Upload OWASP Dependency-Check Report
         uses: actions/upload-artifact@v2
         with:
