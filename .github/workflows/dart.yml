@@ -50,7 +50,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: 11  # Change to the appropriate Java version
-
+          distribution: 'adopt'  # Specify the distribution name
       - name: Download and Run OWASP Dependency-Check
         run: |
           # Download and extract Dependency-Check
