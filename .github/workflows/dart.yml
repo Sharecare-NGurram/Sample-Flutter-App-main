@@ -42,6 +42,20 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
+      
+      - name: Set Up Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11  # Change to the appropriate Java version
+          distribution: 'adopt'  # Specify the distribution name
+      - name: Download and Run OWASP Dependency-Check
+        run: |
+          # Download and extract Dependency-Check
+          curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
+          unzip -q dependency-check.zip -d dependency-check
+          cd dependency-check
+          chmod +x ./bin/dependency-check.sh
+           ./bin/dependency-check.sh --scan /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main
 
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
@@ -77,6 +91,7 @@ jobs:
           curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
           unzip -q dependency-check.zip -d dependency-check
           cd dependency-check
+           ./bin/dependency-check.sh --scan /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main
 
       - name: Upload OWASP Dependency-Check Report
         uses: actions/upload-artifact@v3
