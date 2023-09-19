@@ -51,16 +51,15 @@ jobs:
       - name: Download and Run OWASP Dependency-Check
         run: |
           # Download and extract Dependency-Check
-          curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
+          curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip 
           unzip -q dependency-check.zip -d dependency-check
-          chmod +x dependency-check/bin/dependency-check.sh
+          chmod +x dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh
         working-directory: ${{ github.workspace }}
 
       - name: Run OWASP Dependency-Check
         run: |
-          dependency-check/bin/dependency-check.sh --project "Sample-Flutter-App-main" --scan ./home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main --format ALL --out ./reports
+          dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh --project "Sample-Flutter-App-main" --scan ./home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main --format ALL --out ./reports
         working-directory: ${{ github.workspace }}
-
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
       - uses: actions/checkout@v3
