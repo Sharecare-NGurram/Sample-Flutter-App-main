@@ -82,7 +82,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dependency-check-report
-          path: dependency-check/report
+          path: build/app/outputs/
    #   - name: Install Snyk CLI
    #     run: npm install -g snyk
 
