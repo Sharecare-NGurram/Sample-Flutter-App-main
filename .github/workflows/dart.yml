@@ -42,7 +42,7 @@ jobs:
 
       - name: Analyze project source
         run: dart analyze
-      - run: flutter doctor -v
+      - run: flutter clean
 
 
       - name: Set up Node.js
