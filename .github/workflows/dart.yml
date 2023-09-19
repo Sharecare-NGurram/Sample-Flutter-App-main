@@ -52,7 +52,7 @@ jobs:
         run: |
           # Download and extract Dependency-Check
           curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip 
-          unzip -q dependency-check-8.4.0-release.zip
+          unzip -q dependency-check.zip
           chmod +x dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh
         working-directory: ${{ github.workspace }}
 
