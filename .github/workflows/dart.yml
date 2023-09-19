@@ -58,9 +58,11 @@ jobs:
         run: snyk auth ${{ secrets.SNYK_API_TOKEN }}
 
       - name: Run Snyk Dependency Scan in Debug Mode
-        run: snyk test --all-projects --all-projects
+        run: DEBUG=*snyk* snyk test --all-projects
+     #   run: snyk test --all-projects --all-projects
         env:
           DEBUG: '*snyk*'
+
       
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
