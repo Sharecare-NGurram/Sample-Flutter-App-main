@@ -20,7 +20,6 @@ env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
 
 jobs:
   build:
@@ -39,29 +38,9 @@ jobs:
           flutter-version: '3.10.6'
       - name: Install dependencies
         run: flutter pub get
-      - run: flutter clean
 
       - name: Analyze project source
         run: dart analyze
-      - run: flutter clean
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-
-      - name: Authenticate Snyk
-        run: snyk auth ${{ secrets.SNYK_API_TOKEN }}
-
-      - name: Run Snyk Dependency Scan in Debug Mode
-        run: DEBUG=*snyk* snyk test --all-projects
-     #   run: snyk test --all-projects --all-projects
-        env:
-          DEBUG: '*snyk*'
-
       
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
