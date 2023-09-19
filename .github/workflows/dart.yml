@@ -39,6 +39,7 @@ jobs:
           flutter-version: '3.10.6'
       - name: Install dependencies
         run: flutter pub get
+      - run: flutter clean
 
       - name: Analyze project source
         run: dart analyze
