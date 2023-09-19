@@ -20,6 +20,7 @@ env:
   SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
   SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
 
 jobs:
   build:
@@ -52,7 +53,7 @@ jobs:
         run: npm install -g snyk
 
       - name: Authenticate Snyk
-        run: snyk auth ${{ secrets.SNYK_TOKEN }}
+        run: snyk auth ${{ secrets.SNYK_API_TOKEN }}
 
       - name: Run Snyk Dependency Scan
         run: snyk test --all-projects --all-projects
