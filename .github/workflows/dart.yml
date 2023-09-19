@@ -48,13 +48,12 @@ jobs:
         with:
           java-version: 11  # Change to the appropriate Java version
           distribution: 'adopt'  # Specify the distribution name
-      - name: Download and Run OWASP Dependency-Check
+      - name: Download OWASP Dependency-Check
         run: |
           # Download and extract Dependency-Check
           curl -fsSL https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip 
           unzip -q dependency-check-8.4.0-release.zip
      #     chmod +x dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh
-        working-directory: ${{ github.workspace }}
 
       - name: Run OWASP Dependency-Check
         run: |
