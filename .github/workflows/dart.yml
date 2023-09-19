@@ -54,7 +54,7 @@ jobs:
       - name: Download and Run OWASP Dependency-Check
         run: |
           # Download and extract Dependency-Check
-          curl -fsSL -o dependency-check.zip https://dl.bintray.com/jeremy-long/owasp/dependency-check-8.4.0-release.zip
+          curl -fsSL -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip
           unzip -q dependency-check.zip -d dependency-check
           cd dependency-check
 
