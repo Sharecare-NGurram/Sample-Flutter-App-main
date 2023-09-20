@@ -41,14 +41,19 @@ jobs:
       - name: Analyze project source
         run: dart analyze
 
-      - name: Clone repo
-        uses: actions/checkout@v2
-      - name: Run Nginx
-        run: docker run --rm --detach --publish 8080:80 --name nginx_test nginx
-      - name: Run HawkScan
-        uses: stackhawk/hawkscan-action@v2
+      - uses: actions/checkout@v2
+      - uses: stackhawk/hawkscan-action@v2.1.1
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
+        
+    #  - name: Clone repo
+    #    uses: actions/checkout@v2
+    #  - name: Run Nginx
+    #    run: docker run --rm --detach --publish 8080:80 --name nginx_test nginx
+    #  - name: Run HawkScan
+    #    uses: stackhawk/hawkscan-action@v2
+    #    with:
+    #      apiKey: ${{ secrets.HAWK_API_KEY }}
       
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
