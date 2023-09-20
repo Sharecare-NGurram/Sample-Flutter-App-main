@@ -49,8 +49,13 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
 
-      - name: Check deps
-        uses: nnichols/clojure-vulnerability-check-action@v1
+      - uses: actions/checkout@v2
+      - uses: stackhawk/hawkscan-action@v2.1.1
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+
+   #   - name: Check deps
+   #     uses: nnichols/clojure-vulnerability-check-action@v1
 
       - name: Build APK
         run: flutter build apk
@@ -61,10 +66,6 @@ jobs:
           name: app-release
           path: build/app/outputs/apk/release/app-release.apk
              
-      - uses: actions/checkout@v2
-      - uses: stackhawk/hawkscan-action@v2.1.1
-        with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
    #   - name: Run Snyk Dependency Scan
    #     env:
    #       SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
