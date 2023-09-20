@@ -40,20 +40,6 @@ jobs:
         run: flutter pub get
       - name: Analyze project source
         run: dart analyze
-
-      - uses: actions/checkout@v2
-      - uses: stackhawk/hawkscan-action@v2.1.1
-        with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
-        
-    #  - name: Clone repo
-    #    uses: actions/checkout@v2
-    #  - name: Run Nginx
-    #    run: docker run --rm --detach --publish 8080:80 --name nginx_test nginx
-    #  - name: Run HawkScan
-    #    uses: stackhawk/hawkscan-action@v2
-    #    with:
-    #      apiKey: ${{ secrets.HAWK_API_KEY }}
       
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
@@ -74,35 +60,11 @@ jobs:
         with:
           name: app-release
           path: build/app/outputs/apk/release/app-release.apk
-          
-   #   - name: Checkout Code
-   #     uses: actions/checkout@v2
-
-   #   - name: Set Up Java
-   #     uses: actions/setup-java@v2
-   #     with:
-   #       java-version: 11  # Change to the appropriate Java version
-   #       distribution: 'adopt'  # Specify the distribution name
-   #   - name: Download OWASP Dependency-Check
-   #     run: |
-          # Download and extract Dependency-Check
-   #       curl -fsSL https://github.com/jeremylong/DependencyCheck/releases/download/v8.4.0/dependency-check-8.4.0-release.zip 
-   #       unzip -q dependency-check-8.4.0-release.zip
-     #     chmod +x dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh
-
-   #   - name: Run OWASP Dependency-Check
-   #     run: |
-   #       dependency-check-8.4.0-release/dependency-check/bin/dependency-check.sh --project "Sample-Flutter-App-main" --scan ./home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main --format ALL --out ./reports
-   #     working-directory: ${{ github.workspace }}
-
-   #   - name: Upload OWASP Dependency-Check Report
-   #     uses: actions/upload-artifact@v3
-   #     with:
-   #       name: dependency-check-report
-   #       path: build/app/outputs/
-   #   - name: Install Snyk CLI
-   #     run: npm install -g snyk
-
+             
+      - uses: actions/checkout@v2
+      - uses: stackhawk/hawkscan-action@v2.1.1
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
    #   - name: Run Snyk Dependency Scan
    #     env:
    #       SNYK_TOKEN: ${{ secrets.SNYK_API_TOKEN }}
