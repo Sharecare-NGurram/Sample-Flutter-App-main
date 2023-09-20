@@ -40,6 +40,13 @@ jobs:
         run: flutter pub get
       - name: Analyze project source
         run: dart analyze
+
+      - name: Clone repo
+        uses: actions/checkout@v2
+      - name: Run HawkScan
+        uses: stackhawk/hawkscan-action@v2
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
       
       - name: Checkout Latest Commit
         uses: actions/checkout@v1
