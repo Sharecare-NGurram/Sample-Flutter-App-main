@@ -49,7 +49,7 @@ jobs:
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
 
-      - uses: actions/checkout@v2
+    #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
