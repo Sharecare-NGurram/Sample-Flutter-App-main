@@ -39,28 +39,18 @@ jobs:
       - name: Build iOS app without code signing
         run: flutter build ios --release --no-codesign
       
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Xcode
-        uses: maxim-lobanov/setup-xcode@v1
-        with:
-          xcode-version: latest-stable
-
-      - name: Install dependencies
+      - name: Run SonarCloud analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          gem install xcpretty
-          pod install
-      - name: Build and Analyze
-        run: |
-          xcodebuild -workspace YourProject.xcworkspace -scheme YourScheme clean build | xcpretty
-          ./sonar-scanner/bin/sonar-scanner
+          curl -L https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip
+          unzip build-wrapper-linux-x86.zip
+          export PATH=$PATH:$(pwd)/build-wrapper-linux-x86
+          build-wrapper-linux-x86-64 --out-dir bw-output flutter build ios --release --no-codesign
+          sonar-scanner
 
       - name: Upload SonarCloud results
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          organization: sharecare-ngurram
-          project: Sharecare-NGurram_Sample-Flutter-App-main
+        uses: sonarsource/sonarcloud-github-action@v1
 
     #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
