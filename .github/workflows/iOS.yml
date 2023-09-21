@@ -50,7 +50,7 @@ jobs:
           ./sonar-scanner/bin/sonar-scanner
 
       - name: Upload SonarCloud results
-        uses: sonarsource/sonarcloud-github-action@v1
+        uses: SonarSource/sonarcloud-github-action@master
         with:
           organization: sharecare-ngurram
           project: Sharecare-NGurram_Sample-Flutter-App-main
