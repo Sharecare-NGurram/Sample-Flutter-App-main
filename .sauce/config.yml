@@ -6,16 +6,16 @@ sauce:
   region: eu-central-1
   concurrency: 10
 espresso:
-  app: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/apk/release/app-release.apk
-  testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/apk/release/app-release.apk
+  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
+  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
 suites:
-- name: espresso - Google Pixel .* - Android GoogleAPI Emulator
+- name: espresso - iPhone 14 Simulator
 #  devices:
 #  - name: Google Pixel .*
   emulators:
-  - name: Android GoogleAPI Emulator
+  - name: iPhone 14 Simulator
     platformVersions:
-    - "11.0"
+    - "iOS 16.1"
 artifacts:
   download:
     match:
