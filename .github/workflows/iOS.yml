@@ -44,8 +44,16 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+      - name: Build and Analyze
+        run: |
+          xcodebuild -workspace YourProject.xcworkspace -scheme YourScheme clean build | xcpretty
+          ./sonar-scanner/bin/sonar-scanner
+
+      - name: Upload SonarCloud results
+        uses: sonarsource/sonarcloud-github-action@v1
+        with:
+          organization: sharecare-ngurram
+          project: Sharecare-NGurram_Sample-Flutter-App-main
 
     #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
