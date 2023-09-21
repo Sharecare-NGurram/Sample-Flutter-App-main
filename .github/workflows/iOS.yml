@@ -38,6 +38,19 @@ jobs:
         
       - name: Build iOS app without code signing
         run: flutter build ios --release --no-codesign
+      
+      - name: Checkout Latest Commit
+        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+
+    #  - uses: actions/checkout@v2
+      - uses: stackhawk/hawkscan-action@v2.1.1
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
 
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
@@ -47,3 +60,7 @@ jobs:
         with:
           name: ios-build
           path: build/ios/
+          
+      - name: Upload to Sauce Labs
+        uses: saucelabs/saucectl-run-action@v3
+
