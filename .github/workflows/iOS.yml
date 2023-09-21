@@ -36,7 +36,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build iOS app
-        run: flutter build ios
+        run: flutter run -d iPhone XR
 
       - name: Archive iOS app
         run: flutter build ios --release --no-codesign
