@@ -39,11 +39,18 @@ jobs:
       - name: Build iOS app without code signing
         run: flutter build ios --release --no-codesign
       
-      - name: Checkout Latest Commit
-        uses: actions/checkout@v1
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Xcode
+        uses: actions/setup-xcode@v2
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          xcode-version: 13.0 # Adjust to your Xcode version
+
+      - name: Install dependencies
+        run: |
+          gem install xcpretty
+          pod install
       - name: Build and Analyze
         run: |
           xcodebuild -workspace YourProject.xcworkspace -scheme YourScheme clean build | xcpretty
