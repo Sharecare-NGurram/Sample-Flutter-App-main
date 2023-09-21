@@ -43,12 +43,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          curl -L https://sonarcloud.io/static/cpp/build-wrapper-linux-x86.zip -o build-wrapper-linux-x86.zip
-          unzip build-wrapper-linux-x86.zip
-          export PATH=$PATH:$(pwd)/build-wrapper-linux-x86
-          build-wrapper-linux-x86-64 --out-dir bw-output flutter build ios --release --no-codesign
           sonar-scanner
-
       - name: Upload SonarCloud results
         uses: sonarsource/sonarcloud-github-action@master
 
