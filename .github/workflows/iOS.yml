@@ -23,7 +23,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
@@ -36,7 +36,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       - name: Build iOS app
-        run: flutter build
+        run: flutter build ios --release
+
+      - name: Archive iOS app
+        run: flutter build ios --release --no-codesign
 
       - name: Upload iOS build artifact
         uses: actions/upload-artifact@v2
