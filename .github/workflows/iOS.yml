@@ -50,7 +50,7 @@ jobs:
           sonar-scanner
 
       - name: Upload SonarCloud results
-        uses: sonarsource/sonarcloud-github-action@v1
+        uses: sonarsource/sonarcloud-github-action@master
 
     #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
