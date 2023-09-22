@@ -39,11 +39,6 @@ jobs:
       - name: Build iOS app without code signing
         run: flutter build ios --release --no-codesign
 
-    #  - uses: actions/checkout@v2
-      - uses: stackhawk/hawkscan-action@v2.1.1
-        with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
-
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
 
