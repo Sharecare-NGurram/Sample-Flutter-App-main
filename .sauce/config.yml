@@ -6,8 +6,10 @@ sauce:
   region: eu-central-1
   concurrency: 10
 espresso:
-  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
-  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
+#  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
+  app: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/ipa/release/ios.ipa
+  testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/ipa/release/ios.ipa
+#  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
 suites:
 - name: espresso - iPhone 14 Simulator
 #  devices:
