@@ -38,14 +38,6 @@ jobs:
         
       - name: Build iOS app without code signing
         run: flutter build ios --release --no-codesign
-      
-      - name: Run SonarCloud analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner
-      - name: Upload SonarCloud results
-        uses: sonarsource/sonarcloud-github-action@master
 
     #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
