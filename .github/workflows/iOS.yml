@@ -45,8 +45,8 @@ jobs:
       - name: Upload iOS build artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ios-build
-          path: build/ios/
+          name: ios.ipa
+          path: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/ipa/release/ios.ipa
           
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
