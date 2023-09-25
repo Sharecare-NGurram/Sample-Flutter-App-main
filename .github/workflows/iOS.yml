@@ -23,7 +23,7 @@ env:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macOS-latest
 
     steps:
       - name: Checkout code
@@ -49,7 +49,11 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main -Dsonar.organization=sharecare-ngurram -Dsonar.sources=src -Dsonar.host.url=https://sonarcloud.io
+          sonar-scanner \
+            -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
+            -Dsonar.organization=sharecare-ngurram \
+            -Dsonar.sources=src \
+            -Dsonar.host.url=https://sonarcloud.io
 
 
       - uses: stackhawk/hawkscan-action@v2.1.1
