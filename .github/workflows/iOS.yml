@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ios.aab
-          path: build/ios/
+          path: /build/app/outputs/ipa/release/
           
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
