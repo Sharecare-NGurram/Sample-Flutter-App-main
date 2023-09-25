@@ -40,26 +40,22 @@ jobs:
         run: flutter build ios --release --no-codesign
 
 
-      - name: Install SonarScanner
-        run: |
-          curl -L -o sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-macosx.zip
-          unzip sonar-scanner.zip
-          export PATH="$PATH:$(pwd)/sonar-scanner-cli-5.0.1.3006-macosx/bin"
+   #   - name: Install SonarScanner
+   #     run: |
+   #       curl -L -o sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-macosx.zip
+   #       unzip sonar-scanner.zip
+   #       export PATH="$PATH:$(pwd)/sonar-scanner-cli-5.0.1.3006-macosx/bin"
 
-      - name: Run SonarCloud analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner-cli-5.0.1.3006-macosx\sonar-scanner-5.0.1.3006-macosx\bin\sonar-scanner \
-            -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
-            -Dsonar.organization=sharecare-ngurram \
-            -Dsonar.sources=src \
-            -Dsonar.host.url=https://sonarcloud.io
+   #   - name: Run SonarCloud analysis
+   #     env:
+   #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+   #     run: |
+   #       sonar-scanner-cli-5.0.1.3006-macosx\sonar-scanner-5.0.1.3006-macosx\bin\sonar-scanner \
+   #         -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
+   #         -Dsonar.organization=sharecare-ngurram \
+   #         -Dsonar.sources=src \
+   #         -Dsonar.host.url=https://sonarcloud.io
 
-
-      - uses: stackhawk/hawkscan-action@v2.1.1
-        with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
 
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
@@ -67,7 +63,7 @@ jobs:
       - name: Upload iOS build artifact
         uses: actions/upload-artifact@v2
         with:
-          name: ios.ipa
+          name: ios.aab
           path: build/ios/
           
       - name: Upload to Sauce Labs
