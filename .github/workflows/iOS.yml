@@ -41,15 +41,14 @@ jobs:
 
       - name: Install SonarScanner
         run: |
-            curl -L -o sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
-            unzip sonar-scanner-cli.zip
-            export PATH="$PATH:$(pwd)/sonar-scanner-cli-4.6.2.2472-linux/bin"
+          curl -L -o sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-macosx.zip
+          unzip sonar-scanner.zip
+          export PATH="$PATH:$(pwd)/sonar-scanner-4.6.2.2472-macosx/bin"
+          sonar-scanner
 
-      - name: Scan with StackHawk
-        env:
-          STACKHAWK_API_KEY: ${{ secrets.STACKHAWK_API_KEY }}
-        run: |
-          curl -fsSL https://stackhawk.com/sh | bash -s scan --api-key $STACKHAWK_API_KEY
+      - uses: stackhawk/hawkscan-action@v2.1.1
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
 
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
