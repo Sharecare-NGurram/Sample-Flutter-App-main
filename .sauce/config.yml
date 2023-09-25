@@ -11,11 +11,11 @@ espresso:
   testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/ipa/release/ios.aab
 #  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
 suites:
-- name: espresso - iPhone 14 Simulator
-#  devices:
-#  - name: Google Pixel .*
-  emulators:
-  - name: iPhone 14 Simulator
+- name: iPhone 14 Simulator
+  devices:
+#  - name: iPhone 14 Simulator
+#  emulators:
+#  - name: iPhone 14 Simulator
     platformVersions:
     - "iOS 16.1"
 artifacts:
