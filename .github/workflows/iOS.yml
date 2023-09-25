@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ios.aab
-          path: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios.aab
+          path: build/
           
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
