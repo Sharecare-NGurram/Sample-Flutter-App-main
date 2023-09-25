@@ -49,7 +49,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          sonar-scanner \
+          sonar-scanner-cli-4.6.2.2472-macosx\sonar-scanner-4.6.2.2472-macosx\bin\sonar-scanner \
             -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
             -Dsonar.organization=sharecare-ngurram \
             -Dsonar.sources=src \
