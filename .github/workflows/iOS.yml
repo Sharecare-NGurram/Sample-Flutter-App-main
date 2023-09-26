@@ -65,6 +65,9 @@ jobs:
         with:
           name: ios.aab
           path: build/
+      - name: Debug Workspace Contents
+        run: |
+          ls -R /Users/runner/work/Sample-Flutter-App-main
           
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
