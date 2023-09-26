@@ -59,16 +59,15 @@ jobs:
 
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
-        
-      - name: List Workspace Contents Before Upload
-        run: |
-          ls -R $GITHUB_WORKSPACE
 
       - name: Upload iOS build artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
-          name: ios.aab
-          path: build/
+          name: my-artifact
+          path: path/to/artifact/
+         # name: ios.aab
+         # path: build/
+
       - name: List Workspace Contents After Upload
         run: |
           ls -R $GITHUB_WORKSPACE
