@@ -60,12 +60,24 @@ jobs:
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
 
-      - name: Upload iOS build artifact
-        uses: actions/upload-artifact@v3
+      - name: Package .app into .ipa
+        run: |
+          mkdir -p Payload
+          cp -R build/ios/Release-iphoneos/Runner.app Payload/
+          zip -r app.ipa Payload/
+
+      - name: Publish .ipa as artifact
+        uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
-          path: build/
-         # name: ios.aab
+          name: app-ipa
+          path: app.ipa
+          
+ #     - name: Upload iOS build artifact
+ #       uses: actions/upload-artifact@v3
+ #       with:
+ #         name: my-artifact
+ #         path: build/
+ #         name: ios.aab
 
       - name: List Workspace Contents After Upload
         run: |
