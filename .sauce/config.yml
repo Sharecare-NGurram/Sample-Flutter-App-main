@@ -6,7 +6,7 @@ sauce:
   concurrency: 2
 suites:
 - name: xcuitest - iPhone .*
-  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
+ # app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
   testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
   devices:
   - name: iPhone .*
