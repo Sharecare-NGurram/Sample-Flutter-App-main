@@ -59,15 +59,19 @@ jobs:
 
       - name: Archive iOS app without code signing
         run: flutter build ios --release --no-codesign
+        
+      - name: List Workspace Contents Before Upload
+        run: |
+          ls -R $GITHUB_WORKSPACE
 
       - name: Upload iOS build artifact
         uses: actions/upload-artifact@v2
         with:
           name: ios.aab
           path: build/
-      - name: Debug Workspace Contents
+      - name: List Workspace Contents After Upload
         run: |
-          ls -R /Users/runner/work/Sample-Flutter-App-main
+          ls -R $GITHUB_WORKSPACE
           
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
