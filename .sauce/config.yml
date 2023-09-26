@@ -4,6 +4,7 @@ showConsoleLog: false
 sauce:
   region: eu-central-1
   concurrency: 2
+  retries: 2
 suites:
 - name: xcuitest - iPhone .*
   app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/Payload/Runner.app
@@ -16,7 +17,4 @@ artifacts:
     - '*'
     when: always
     directory: ./artifacts
-    
-  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
-  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
 
