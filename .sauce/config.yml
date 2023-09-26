@@ -1,36 +1,22 @@
 apiVersion: v1alpha
-kind: espresso
-defaults: {}
+kind: xcuitest
 showConsoleLog: false
 sauce:
   region: eu-central-1
-  concurrency: 10
-espresso:
-#  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
+  concurrency: 2
+suites:
+- name: xcuitest - iPhone .*
   app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
   testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
-#  testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/ipa/release/ios.aab
-#  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
-suites:
-  - name: iOS Test Suite
-    devices:
-      - id: my-device-1
-        platformName: iOS
-        platformVersion: "15.0"
-        deviceName: iPhone 12 Simulator
-        appiumVersion: 1.21.0
-        browserName: Safari
-        
-#- name: iPhone 14 Simulator
-#  devices:
-#  - name: iPhone 14 Simulator
-#  emulators:
-#  - name: iPhone 14 Simulator
-#    platformVersions:
-#    - "iOS 16.1"
+  devices:
+  - name: iPhone .*
 artifacts:
   download:
     match:
     - '*'
     when: always
-    directory: artifacts
+    directory: ./artifacts
+    
+  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
+  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
+
