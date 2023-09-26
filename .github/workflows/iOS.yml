@@ -38,6 +38,16 @@ jobs:
         
       - name: Build iOS app without code signing
         run: flutter build ios --release --no-codesign
+        
+      - name: SonarCloud Scan
+        run: |
+          ./gradlew sonarqube \
+           -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
+           -Dsonar.organization=sharecare-ngurram \
+           -Dsonar.host.url=https://sonarcloud.io \
+           -Dsonar.login=$SONAR_TOKEN
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 
    #   - name: Install SonarScanner
@@ -55,6 +65,7 @@ jobs:
    #         -Dsonar.organization=sharecare-ngurram \
    #         -Dsonar.sources=src \
    #         -Dsonar.host.url=https://sonarcloud.io
+   
 
 
       - name: Archive iOS app without code signing
