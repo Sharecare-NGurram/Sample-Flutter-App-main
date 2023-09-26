@@ -7,8 +7,8 @@ sauce:
   concurrency: 10
 espresso:
 #  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
-  app: build/ios.aab
-  testApp: build/ios.aab
+  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
+  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
 #  testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/ipa/release/ios.aab
 #  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/ios/Release-iphoneos/Runner.app/Frameworks/libswiftFoundation.dylib
 suites:
