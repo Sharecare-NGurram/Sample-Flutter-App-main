@@ -35,14 +35,7 @@ jobs:
           flutter-version: '3.10.6'
       - name: Install dependencies
         run: flutter pub get
-        
-      - uses: actions/checkout@v2
-      - uses: stackhawk/hawkscan-action@v2.1.2
-        with:
-          apiKey: ${{ secrets.HAWK_API_KEY }}
-        
-      - name: Build iOS app without code signing
-        run: flutter build ios --release --no-codesign
+    
 
       - name: Install SonarScanner
         run: |
@@ -58,6 +51,14 @@ jobs:
             -Dsonar.sources=./  # Adjust this path as needed
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - uses: actions/checkout@v2
+      - uses: stackhawk/hawkscan-action@v2.1.2
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+
+      - name: Build iOS app without code signing
+        run: flutter build ios --release --no-codesign
 
 
       - name: Archive iOS app without code signing
