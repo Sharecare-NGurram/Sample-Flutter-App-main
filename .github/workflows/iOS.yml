@@ -49,8 +49,8 @@ jobs:
       - name: SonarCloud Scan
         run: |
           sonar-scanner \
-            -Dsonar.projectKey=your-project-key \
-            -Dsonar.organization=your-organization-key \
+            -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
+            -Dsonar.organization=sharecare-ngurram \
             -Dsonar.sources=./  # Adjust this path as needed
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
