@@ -36,8 +36,13 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Set up Java 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          
       - uses: actions/checkout@v2
-      - uses: stackhawk/hawkscan-action@v1.3.4
+      - uses: stackhawk/hawkscan-action@v2.1.1
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
     
