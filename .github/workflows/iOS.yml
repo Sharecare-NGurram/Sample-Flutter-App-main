@@ -37,7 +37,7 @@ jobs:
         run: flutter pub get
         
       - uses: actions/checkout@v2
-      - uses: stackhawk/hawkscan-action@v2.1.1
+      - uses: stackhawk/hawkscan-action@v2.1.2
         with:
           apiKey: ${{ secrets.HAWK_API_KEY }}
         
