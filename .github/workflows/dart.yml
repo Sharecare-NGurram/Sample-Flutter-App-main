@@ -73,5 +73,3 @@ jobs:
 
       - name: Upload to Sauce Labs
         uses: saucelabs/saucectl-run-action@v3
-      
-
