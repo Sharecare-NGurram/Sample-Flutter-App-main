@@ -1,24 +1,20 @@
 apiVersion: v1alpha
-kind: espresso
-defaults: {}
+kind: xcuitest
 showConsoleLog: false
 sauce:
   region: eu-central-1
-  concurrency: 10
-espresso:
-  app: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/apk/release/app-release.apk
-  testApp: /home/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/build/app/outputs/apk/release/app-release.apk
+  concurrency: 2
+  retries: 2
 suites:
-- name: espresso - Google Pixel .* - Android GoogleAPI Emulator
-#  devices:
-#  - name: Google Pixel .*
-  emulators:
-  - name: Android GoogleAPI Emulator
-    platformVersions:
-    - "11.0"
+- name: xcuitest - iPhone .*
+  app: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/Payload/Runner.app
+  testApp: /Users/runner/work/Sample-Flutter-App-main/Sample-Flutter-App-main/app.ipa
+  devices:
+  - name: iPhone .*
 artifacts:
   download:
     match:
     - '*'
     when: always
-    directory: artifacts
+    directory: ./artifacts
+
