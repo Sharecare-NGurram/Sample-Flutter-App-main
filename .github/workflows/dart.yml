@@ -4,7 +4,6 @@
 # documentation.
 
 name: Dart
-
 on:
   push:
     branches:
