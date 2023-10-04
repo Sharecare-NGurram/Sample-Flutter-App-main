@@ -46,12 +46,9 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=Sharecare-NGurram_Sample-Flutter-App-main \
-            -Dsonar.organization=sharecare-ngurram \
-            -Dsonar.sources=./  # Adjust this path as needed
-     #   uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
     #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
