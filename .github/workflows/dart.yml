@@ -47,6 +47,9 @@ jobs:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          organization: sharecare-ngurram
+          token: ${{ secrets.SONAR_TOKEN }}
 
     #  - uses: actions/checkout@v2
       - uses: stackhawk/hawkscan-action@v2.1.1
